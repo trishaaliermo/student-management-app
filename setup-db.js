@@ -1,16 +1,21 @@
+// Import the MySQL promise library to interact with the database using async/await
 import mysql from 'mysql2/promise';
 
+// Main function to initialize and populate the database
 async function setupDatabase() {
+  // Create a connection to the local MySQL server using environment variables or fallback defaults
   const connection = await mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
-    multipleStatements: true,
+    multipleStatements: true, // Allows running multiple SQL queries in one string
   });
 
   console.log('Connected to MySQL server...');
 
+  // SQL queries to create database, table structure, and initial seed data
+  // Decided to use my previous data from our previous class exercise
   const sql = `
     DROP DATABASE IF EXISTS oosd_webappdev;
     CREATE DATABASE oosd_webappdev;
@@ -46,11 +51,14 @@ async function setupDatabase() {
     ('Khine',  'Oo Mon',     'khineoo.mon@sait.ca',   '902-555-0108', '1501 Barrington St',    'Halifax',    'Nova Scotia',    'Canada', 'B3J 1Z6', 'Web Development',      'Y3', '/student8.jpeg');
   `;
 
+  // Execute the SQL statement script
   await connection.query(sql);
   console.log('Database re-seeded with custom student photos successfully!');
+  // Safely close the database connection when finished
   await connection.end();
 }
 
+// Run the function and catch any setup errors
 setupDatabase().catch((err) => {
   console.error('Setup failed:', err.message);
 });
