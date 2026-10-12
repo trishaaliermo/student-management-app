@@ -1,6 +1,8 @@
 export default function StudentCard({ student }) {
-
-  const avatarSrc = `/images/student${student.id}.jpeg`;
+  // If student.photo_url is missing or blank, use the general default avatar
+  const avatarSrc = student.photo_url && student.photo_url.trim() !== '' 
+    ? (student.photo_url.startsWith('/images') ? student.photo_url : `/images${student.photo_url}`)
+    : '/images/default_avatar.jpeg';
 
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-md p-4 flex flex-col items-center text-center text-gray-900">
