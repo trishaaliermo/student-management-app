@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 // StudentCard component to display individual student details
 export default function StudentCard({ student }) {
   
@@ -12,11 +14,13 @@ export default function StudentCard({ student }) {
     // Outer card container with styling for background, border, shadow, and centered content
     <div className="bg-white border border-gray-200 rounded-lg shadow-md p-4 flex flex-col items-center text-center text-gray-900">
       
-      {/* Circle container for the student's profile picture */}
+      {/* Circle container for the student's profile picture using Next.js Image component */}
       <div className="relative w-20 h-20 mb-3 overflow-hidden rounded-full border border-gray-300 bg-gray-100">
-        <img 
+        <Image 
           src={avatarSrc} 
           alt={`${student.first_name} ${student.last_name}`}
+          width={80}
+          height={80}
           className="object-cover w-full h-full"
         />
       </div>
