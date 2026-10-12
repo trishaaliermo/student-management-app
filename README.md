@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# student-management-app
+October 12, 2026 CPRG210 Assignment 2
 
-## Getting Started
+This is a Student Management System Assignment in my CPRG210 Class. It is a full-stack web application built with Next.js (App Router), MySQL, and Tailwind CSS. This application displays a dynamic directory of student profiles, allows for new student registration with real-time weather data fetching, and manages persistent records in a MySQL database.
 
-First, run the development server:
+It features:
+Student Directory: Displays student profiles in a responsive grid using custom high-contrast card components and dynamic profile photos.
+New Student Registration: Interactive form to register new students with automated/manual weather data fetching based on location using the OpenWeatherMap API.
+Database Integration: Relational database management using MySQL for data persistence.
+Database Seeding: Automated setup script (setup-db.js) to re-create and populate the database schema with sample student records.
+Modern UI/UX: Styled using Tailwind CSS with accessible contrast and custom layouts.
 
-```bash
+For the Tech:
+Framework: Next.js 16+ (App Router)
+Styling: Tailwind CSS
+Database: MySQL
+Database Driver: mysql2
+External APIs: OpenWeatherMap API
+
+Project Structure:
+student-app/
+├── app/                  # Next.js App Router pages and server actions
+├── components/           # Reusable UI components (e.g., StudentCard)
+├── public/               # Static assets
+│   └── images/           # Student profile images (student1.jpeg - student8.jpeg)
+├── setup-db.js           # MySQL database schema setup and seed script
+└── .env.local            # Environment variables (DB credentials, API keys)
+
+As to how you get started:
+Prerequisites:
+Node.js (v18+ recommended)
+MySQL Server running locally or remotely
+
+Env setup:
+Create a .env.local file in the root of the project with the following environment variables:
+
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=your_mysql_password
+DB_PORT=3306
+NEXT_PUBLIC_WEATHER_API_KEY=your_openweather_api_key
+
+Database setup:
+To create the oosd_webappdev database, create the students table, and seed initial student records:
+node --env-file=.env.local setup-db.js
+
+Run the app:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open http://localhost:3000 in your browser to view the application.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ver control:
+git add .
+git commit -m "Update project documentation"
+git push origin main
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thank you and have fun!
